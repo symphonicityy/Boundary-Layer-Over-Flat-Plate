@@ -28,24 +28,27 @@ int main()
     {
     	j=0;
     	Ux[0]=0;
-		Ux[numY]=U;
-		Uy[0]=0;
-		Uy_iPlus1[0]=0;
+	Ux[numY]=U;
+	Uy[0]=0;
+	Uy_iPlus1[0]=0;
     	Ux_iPlus1[0]=0;
     	fprintf(fp, "%d,%d,0,%f,%f\n",i,j,Ux[j],Uy[j]);
-		for(j=1; j<=numY-1; j++)
-		{
-			Ux_iPlus1[j]=Ux[j]+(nu/dx)*((Ux[j+1]-2*Ux[j]+Ux[j-1])/Ux[j])-((Ux[j+1]-Ux[j-1])/2)*(Uy[j]/Ux[j]);
-			Uy_iPlus1[j]=Uy_iPlus1[j-1]-0.5*(Ux_iPlus1[j]-Ux[j]+Ux_iPlus1[j-1]-Ux[j-1]);
-			fprintf(fp, "%d,%d,0,%f,%f\n",i,j,Ux[j],Uy[j]);
-		}
-		for(j=1; j<=numY-1; j++)
-		{
-			Ux[j]=Ux_iPlus1[j];
-			Ux_iPlus1[j]=0;
-		}
+	
+	for(j=1; j<=numY-1; j++)
+	    {
+		Ux_iPlus1[j]=Ux[j]+(nu/dx)*((Ux[j+1]-2*Ux[j]+Ux[j-1])/Ux[j])-((Ux[j+1]-Ux[j-1])/2)*(Uy[j]/Ux[j]);
+		Uy_iPlus1[j]=Uy_iPlus1[j-1]-0.5*(Ux_iPlus1[j]-Ux[j]+Ux_iPlus1[j-1]-Ux[j-1]);
+		fprintf(fp, "%d,%d,0,%f,%f\n",i,j,Ux[j],Uy[j]);
+	    }
+	
+	for(j=1; j<=numY-1; j++)
+	    {
+		Ux[j]=Ux_iPlus1[j];
+		Ux_iPlus1[j]=0;
+	    }
 	
 	printf("Step %d of %d\n",i,numX);		
-	}
+	
+    }
 	fclose(fp);
 }
