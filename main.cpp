@@ -22,8 +22,8 @@ int main()
 	}
 	Ux[0]=0;
 
-    fp = fopen("results.csv", "a+");
-    fprintf(fp, "x-coord,y-coord,z-coord,u,v\n");
+    fp = fopen("results.csv", "a+"); // Open results.csv file
+    fprintf(fp, "x-coord,y-coord,z-coord,u,v\n"); // Write coordinates and velocity values to the file in comma separated format
   
     for(i=0; i<=numX; i++)
     {
