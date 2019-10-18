@@ -13,7 +13,7 @@ int main()
 	float Ux[numY+1]={0}; // Array that holds x-Velocity values for current row 
 	float Uy[numY+1]={0}; // Array that holds y-Velocity values for current row 
 	float Ux_iPlus1[numY+1]={0}; // Array that holds x-Velocity values for next row 
-	float Uy_iPlus1[numY+1]={0}; // Array that holds x-Velocity values for next row 
+	float Uy_iPlus1[numY+1]={0}; // Array that holds y-Velocity values for next row 
 	
 	FILE *fp;
 	for(i=0;i<=numY;i++)
@@ -25,7 +25,7 @@ int main()
     fp = fopen("results.csv", "a+"); // Open results.csv file
     fprintf(fp, "x-coord,y-coord,z-coord,u,v\n"); // Write coordinates and velocity values to the file in comma separated format
   
-    for(i=0; i<=numX; i++)
+    for(i=0; i<=numX; i++) // Main for-loop, x+ is the marching direction
     {
     	j=0;
     	Ux[0]=0;
@@ -35,14 +35,14 @@ int main()
     	Ux_iPlus1[0]=0;
     	fprintf(fp, "%d,%d,0,%f,%f\n",i,j,Ux[j],Uy[j]);
 	
-	for(j=1; j<=numY-1; j++)
+	for(j=1; j<=numY-1; j++) // Seconrady for-loop, y+ is the marching direction
 	    {
 		Ux_iPlus1[j]=Ux[j]+(nu/dx)*((Ux[j+1]-2*Ux[j]+Ux[j-1])/Ux[j])-((Ux[j+1]-Ux[j-1])/2)*(Uy[j]/Ux[j]);
 		Uy_iPlus1[j]=Uy_iPlus1[j-1]-0.5*(Ux_iPlus1[j]-Ux[j]+Ux_iPlus1[j-1]-Ux[j-1]);
 		fprintf(fp, "%d,%d,0,%f,%f\n",i,j,Ux[j],Uy[j]);
 	    }
 	
-	for(j=1; j<=numY-1; j++)
+	for(j=1; j<=numY-1; j++) // For-loop to set next row as current one and set zero values for new next row
 	    {
 		Ux[j]=Ux_iPlus1[j];
 		Ux_iPlus1[j]=0;
