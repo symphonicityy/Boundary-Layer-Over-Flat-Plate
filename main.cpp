@@ -10,10 +10,10 @@ int main()
 	int numY=0.025/dx; // Number of cells in the y-direction
 	int i=0, j=0;
 	
-	float Ux[numY+1]={0}; 
-	float Uy[numY+1]={0};
-	float Ux_iPlus1[numY+1]={0};
-	float Uy_iPlus1[numY+1]={0};
+	float Ux[numY+1]={0}; // Array that holds x-Velocity values for current row 
+	float Uy[numY+1]={0}; // Array that holds y-Velocity values for current row 
+	float Ux_iPlus1[numY+1]={0}; // Array that holds x-Velocity values for next row 
+	float Uy_iPlus1[numY+1]={0}; // Array that holds x-Velocity values for next row 
 	
 	FILE *fp;
 	for(i=0;i<=numY;i++)
