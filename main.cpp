@@ -48,7 +48,7 @@ int main()
 		Ux_iPlus1[j]=0;
 	    }
 	
-	printf("Step %d of %d\n",i,numX);		
+	printf("Step %d of %d\n",i,numX); // Print progress info on the screen	
 	
     }
 	fclose(fp);
