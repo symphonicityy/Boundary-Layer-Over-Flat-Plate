@@ -2,12 +2,13 @@
 
 int main()
 {
-	float U=10;
-	float nu=1.4/100000; 
-	float dx = 0.0001;
+
+	float U=10; // Freestream flow velocity
+	float nu=1.4/100000; // Dynamic viscosity
+	float dx = 0.0001; // Grid size
 	int numX=1/dx; // Number of cells in the x-direction
 	int numY=0.025/dx; // Number of cells in the y-direction
-	int i=0, j=0; 
+	int i=0, j=0;
 	
 	float Ux[numY+1]={0}; 
 	float Uy[numY+1]={0};
